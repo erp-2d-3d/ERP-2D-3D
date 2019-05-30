@@ -1,5 +1,6 @@
-function [ output_args ] = fun_3D( model,time_file,time_pause )
+function [ output_args ] = fun_3D_pro( model,time_file,time_pause )
 %UNTITLED10 Summary of this function goes here
+%UNTITLED9 Summary of this function goes here
 %   Detailed explanation goes here
 
 %POST instead of DELETE
@@ -27,7 +28,7 @@ response1 = webwrite(dsiURL,data1,options);
 fprintf(time_file, 'Second post: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
 data2 = struct('space','DO3D','x','1920','y','1080','w','1920','h','1080');
 data2.app = struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9082');
-modelname = strcat('http://gdo-appsdev.dsi.ic.ac.uk:8081/',model,'.jpg');
+modelname = strcat('http://gdo-appsdev.dsi.ic.ac.uk:8081/',model,'-2D.jpg');
 config2 = struct('tileSources', struct('type', 'image', 'url', string(modelname)));
 viewport2 = struct('zoom', 1, 'dimensions', struct('w', '1920', 'h', '1080'), 'bounds', struct('x', 0, 'y', 0, 'w', 1, 'h', 0.5625));
 data2.app.states = struct('load',struct('config', config2, 'viewport', viewport2));
@@ -38,6 +39,7 @@ pause(2.5);
 data3 = delete_black(strcat(dsiURL, 's/0'),options);
 
 pause(time_pause);
+
 
 end
 

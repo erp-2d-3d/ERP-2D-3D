@@ -24,17 +24,17 @@ data1.app.states = struct('load',struct('config', config1, 'viewport', viewport1
 response1 = webwrite(dsiURL,data1,options);
 
 %Perform request at GET URL.
-first_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=0&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=0';
-first_options = weboptions('RequestMethod','auto','ContentType','auto');
+% first_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=0&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=0';
+% first_options = weboptions('RequestMethod','auto','ContentType','auto');
 
 %Read response.
 try 
-    first_data = webread(first_url,first_options);
+%     first_data = webread(first_url,first_options);
 catch 
     disp('No information found.');
 end
 
-pause(time_pause);
+pause(2.5);
 
 data2 = delete_black(strcat(dsiURL, 's/0'),options);
 
@@ -55,18 +55,18 @@ viewport2 = struct('zoom', 1, 'dimensions', struct('w', '1920', 'h', '1080'), 'b
 data4.app.states = struct('load',struct('config', config2, 'viewport', viewport2));
 response2 = webwrite(dsiURL,data4,options);
 
-%Perform request at GET URL.
-second_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=1&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=1';
-second_options = weboptions('RequestMethod','auto','ContentType','auto');
+% %Perform request at GET URL.
+% second_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=1&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=1';
+% second_options = weboptions('RequestMethod','auto','ContentType','auto');
 
 %Read response.
 try 
-    second_data = webread(second_url,second_options);
+%     second_data = webread(second_url,second_options);
 catch 
     disp('No information found.');
 end
 
-pause(time_pause);
+pause(1.5);
 
 data5 = delete_black(strcat(dsiURL, 's/0'),options);
 

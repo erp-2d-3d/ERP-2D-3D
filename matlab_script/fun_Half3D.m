@@ -1,6 +1,7 @@
-function [ output_args ] = fun_Half3Dto2D( model,time_file,time_pause )
-%UNTITLED8 Summary of this function goes here
+function [ output_args ] = fun_Half3D( model,time_file,time_pause )
+%UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
+%2nd HTTP POST 3D: add depth map 
 
 %POST instead of DELETE
 fprintf(time_file, 'First delete: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
@@ -43,65 +44,9 @@ data3.app = struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9083');
 data3.app.states = struct('load',struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9083/data/background/index.html?background=8b8b8b8f'));
 response3 = webwrite(dsiURL,data3,options);
 
-%Perform request at GET URL.
-% first_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=1&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=1';
-% first_options = weboptions('RequestMethod','auto','ContentType','auto');
-% 
-% %Perform request at GET URL.
-% second_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=0&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=0';
-% second_options = weboptions('RequestMethod','auto','ContentType','auto');
-
-%Perform request at GET URL.
-% third_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=2&url=http://gdo-appsdev.dsi.ic.ac.uk:9083/data/background/index.html?background=8b8b8b8f';
-% third_options = weboptions('RequestMethod','auto','ContentType','auto');
-
-%Read response.
-try 
-%     first_data = webread(first_url,first_options);
-%     second_data = webread(second_url,second_options);
-%     third_data = webread(third_url,third_options);
-catch 
-    disp('No information found.');
-end
-
 pause(2.5);
 
 data4 = delete_black(strcat(dsiURL, 's/0'),options);
-
-pause(time_pause);
-
-
-data5 = black_screen(dsiURL,options);
-disp(data5);
-
-%4rd HTTP POST = add opaque mask
-fprintf(time_file, 'Fourth post (add opaque mask): %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
-data6 = struct('space','DO3D-depth','x','0','y','0','w','7680','h','2160');
-data6.app = struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9083');
-data6.app.states = struct('load',struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9083/data/background/index.html?background=8b8b8bff'));
-response4 = webwrite(dsiURL,data6,options);
-
-
-pause(1.5);
-
-
-
-
-data7 = delete_black(strcat(dsiURL, 's/4'),options);
-
-
-
-%Perform request at GET URL.
-%fourth_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=2&url=http://gdo-appsdev.dsi.ic.ac.uk:9083/data/background/index.html?background=8b8b8bff';
-% fourth_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=2&url=http://gdo-appsdev.dsi.ic.ac.uk:9083/control.html?oveSectionId=2%26url%3Dhttp%3A%2F%2Fgdo-appsdev.dsi.ic.ac.uk%3A9083%2Fdata%2Fbackground%2Findex.html%3Fbackground%3D8b8b8bff';
-% fourth_options = weboptions('RequestMethod','auto','ContentType','auto');
-
-%Read response.
-try 
-%     fourth_data = webread(fourth_url,fourth_options);
-catch 
-    disp('No information found.');
-end
 
 pause(time_pause);
 

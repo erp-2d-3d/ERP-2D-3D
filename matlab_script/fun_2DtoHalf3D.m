@@ -24,17 +24,17 @@ data1.app.states = struct('load',struct('config', config1, 'viewport', viewport1
 response1 = webwrite(dsiURL,data1,options);
 
 %Perform request at GET URL.
-first_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=0&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=0';
-first_options = weboptions('RequestMethod','auto','ContentType','auto');
+% first_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=0&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=0';
+% first_options = weboptions('RequestMethod','auto','ContentType','auto');
 
 %Read response.
 try 
-    first_data = webread(first_url,first_options);
+%     first_data = webread(first_url,first_options);
 catch 
     disp('No information found.');
 end
 
-pause(time_pause);
+pause(2.5);
 
 data2 = delete_black(strcat(dsiURL, 's/0'),options);
 
@@ -60,24 +60,24 @@ data5.app.states = struct('load',struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9
 response3 = webwrite(dsiURL,data5,options);
 
 %Perform request at GET URL.
-second_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=1&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=1';
-second_options = weboptions('RequestMethod','auto','ContentType','auto');
+% second_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=1&url=http://gdo-appsdev.dsi.ic.ac.uk:9082/control.html?oveSectionId=1';
+% second_options = weboptions('RequestMethod','auto','ContentType','auto');
 
 %Perform request at GET URL.
-third_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=2&url=http://gdo-appsdev.dsi.ic.ac.uk:9083/data/background/index.html?background=8b8b8b99';
-third_options = weboptions('RequestMethod','auto','ContentType','auto');
+% third_url = 'http://gdo-appsdev.dsi.ic.ac.uk:8084/set?id=2&url=http://gdo-appsdev.dsi.ic.ac.uk:9083/data/background/index.html?background=8b8b8b99';
+% third_options = weboptions('RequestMethod','auto','ContentType','auto');
 
 %Read response.
 try 
-    second_data = webread(second_url,second_options);
-    third_data = webread(third_url,third_options);
+%     second_data = webread(second_url,second_options);
+%     third_data = webread(third_url,third_options);
 catch 
     disp('No information found.');
 end
 
-pause(time_pause);
+pause(1.5);
 
-data6 = delete_black(strcat(dsiURL, 's/0'),options);
+data6 = delete_black(strcat(dsiURL, 's/2'),options);
 
 pause(time_pause);
 

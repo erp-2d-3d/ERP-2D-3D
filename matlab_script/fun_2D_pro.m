@@ -1,5 +1,5 @@
-function [ output_args ] = fun_2D( model,time_file,time_pause )
-%UNTITLED9 Summary of this function goes here
+function [ output_args ] = fun_2D_pro( model,time_file,time_pause )
+%UNTITLED8 Summary of this function goes here
 %   Detailed explanation goes here
 
 %POST instead of DELETE
@@ -16,7 +16,7 @@ data0 = black_screen(dsiURL,options);
 %1st HTTP POST
 data1 = struct('space','DO3D','x','1920','y','1080','w','1920','h','1080');
 data1.app = struct('url','http://gdo-appsdev.dsi.ic.ac.uk:9082');
-modelname = strcat('http://gdo-appsdev.dsi.ic.ac.uk:8081/',model,'.jpg');
+modelname = strcat('http://gdo-appsdev.dsi.ic.ac.uk:8081/',model,'-2D.jpg');
 config1 = struct('tileSources', struct('type', 'image', 'url', string(modelname)));
 viewport1 = struct('zoom', 1, 'dimensions', struct('w', '1920', 'h', '1080'), 'bounds', struct('x', 0, 'y', 0, 'w', 1, 'h', 0.5625));
 data1.app.states = struct('load',struct('config', config1, 'viewport', viewport1));

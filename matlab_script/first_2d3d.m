@@ -1,0 +1,53 @@
+time_file = fopen('time_records1_2d3d.txt','w');
+fprintf(time_file, 'The start time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
+
+trial_num = 300;
+time_pause = 1.5;
+n = 10;
+l = 10;
+order = randperm(300,300);
+first_order = order(1:100);
+second_order = order(101:200);
+third_order = order(201:300);
+save('2d3d_order1.txt', 'first_order', '-ascii', '-tabs');
+save('2d3d_order2.txt', 'second_order', '-ascii', '-tabs');
+save('2d3d_order3.txt', 'third_order', '-ascii', '-tabs');
+
+S = {'fbox1','fbox2','fbox3','fbox4','fbox5','fsphere1','fsphere2','fsphere3','fsphere4','fsphere5'};
+
+order = importdata('2d3d_order1.txt');
+
+[y,Fs] = audioread('/Users/shirleyfan/Desktop/SineWave_440Hz.wav');
+testobj = audioplayer(y,Fs);     % Create audioplayer object
+play(testobj);  
+
+for m = 1:length(order)
+    idx = order(m);
+    i = string(idx);
+    j = char(i);
+    j = j(end);
+    j = str2double(j)+1;
+    model = S(j);
+    
+    if (idx <= 100)
+        disp('perform 2d');
+        disp(model);
+        fprintf(time_file, 'The model %s is performing 2d\n',char(model));
+ 
+        fun_2D(model,time_file,time_pause);
+    elseif (idx <= 200)
+        disp('perform 3d');
+        disp(model);
+        fprintf(time_file, 'The model %s is performing 3d\n',char(model));
+        fun_3D(model,time_file,time_pause);
+    else
+        disp('perform Half 3d');
+        disp(model);
+        fprintf(time_file, 'The model %s is performing half3d\n',char(model));
+        fun_Half3D(model,time_file,time_pause);
+    end
+ 
+end
+ 
+    
+fclose(time_file);

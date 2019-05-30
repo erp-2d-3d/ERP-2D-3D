@@ -17,7 +17,7 @@ response3 = webwrite(dsiURL,data2,options);
 %     disp('No information found.');
 % end
 
-data = '';
+data = response3;
 
 end
 
