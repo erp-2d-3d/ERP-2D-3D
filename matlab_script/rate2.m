@@ -18,6 +18,7 @@ seq_2d = horzcat(seq_2d,new_2d);
 [y,Fs] = audioread('/Users/shirleyfan/Desktop/SineWave_440Hz.wav');
 testobj = audioplayer(y,Fs);     % Create audioplayer object
 play(testobj);
+fprintf(time_file, 'The starting beep time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
 
 sequence = randperm(20,20);
 
@@ -25,6 +26,10 @@ for m = 1:20
     idx = sequence(m);
     model = S(idx);
     
+    
+    play(testobj);  
+    fprintf(time_file, 'The beep time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
+
     %POST instead of DELETE
     fprintf(time_file, 'First delete: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
     newURL = 'http://gdo-appsdev.dsi.ic.ac.uk:8083/sections';

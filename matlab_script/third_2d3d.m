@@ -8,7 +8,9 @@ order = importdata('2d3d_order3.txt');
 [y,Fs] = audioread('/Users/shirleyfan/Desktop/SineWave_440Hz.wav');
 testobj = audioplayer(y,Fs);     % Create audioplayer object
 play(testobj);  
+fprintf(time_file, 'The starting beep time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
 
+time_pause = 1.5;
 for m = 1:length(order)
     idx = order(m);
     i = string(idx);
@@ -16,6 +18,9 @@ for m = 1:length(order)
     j = j(end);
     j = str2double(j)+1;
     model = S(j);
+    
+    play(testobj);  
+    fprintf(time_file, 'The beep time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
     
     if (idx <= 100)
         disp('perform 2d');

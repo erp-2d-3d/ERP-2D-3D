@@ -22,13 +22,20 @@ fclose(fid2);
 [y,Fs] = audioread('/Users/shirleyfan/Desktop/SineWave_440Hz.wav');
 testobj = audioplayer(y,Fs);     % Create audioplayer object
 play(testobj);
+fprintf(time_file, 'The starting beep time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
+
+S = {'camera1','camera2','camera3','camera4','camera5','camera6','camera7','camera8','camera9','camera10'};
 
 sequence = randperm(10,10);
-
+% disp(sequence);
 for m = 1:10
     idx = sequence(m);
+%     disp(idx);
     model = S(idx);
-    
+    play(testobj);  
+    fprintf(time_file, 'The beep time is: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
+
+%     disp(model)
     %POST instead of DELETE
     fprintf(time_file, 'First delete: %s\n',datestr(now,'mmmm dd, yyyy HH:MM:SS.FFF AM'));
     newURL = 'http://gdo-appsdev.dsi.ic.ac.uk:8083/sections';
